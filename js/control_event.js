@@ -166,7 +166,7 @@ function onClick_trick(){
 
 }
 function onClick_addP(){
-	let nHijos=(document.getElementById("trucos").children.length)/2;
+	let nHijos=(document.getElementById("trucos").children.length)/3;
 	let selecion=[];
 	for(let i=0; i<nHijos; i++){
 		if(document.getElementById("truco"+i).checked==true){
@@ -197,7 +197,7 @@ function onClick_addP(){
 	cargarLayout(document.getElementById("central"), MIPERFIL, uiPerfil);
 }
 function onClick_addH(){
-	let nHijos=(document.getElementById("trucos").children.length)/2;
+	let nHijos=(document.getElementById("trucos").children.length)/3;
 	let selecion=[];
 	for(let i=0; i<nHijos; i++){
 		if(document.getElementById("truco"+i).checked==true){
@@ -240,4 +240,14 @@ function eliminarDuplicados(arr) {
 	 	out.push(i);
 	 }
 	 return out;
+}
+function onClick_trucoVideo(event){
+	
+	console.log(event.target.className);
+	if(document.getElementById(event.target.className).className=="video"){
+	document.getElementById(event.target.className).className="videoNo";
+	}else{
+		document.getElementById(event.target.className).className="video";
+	}
+
 }

@@ -310,7 +310,7 @@ div.tab a:focus .active {
 }
 #trucos{
 	background-color: #ffffff;
-	width: 50%;
+	width: 30%;
 	height: 77%;
 	margin: 5%;
 	padding-left:3%;
@@ -318,5 +318,23 @@ div.tab a:focus .active {
 	font-size: 3vh;
 	font-family: FuturaBd;
 	overflow: auto;
+}
+.videoNo{
+	display: none;
+/* 	position: absolute;
+	z-index: -4;
+	overflow: auto;
+	width: 90%;
+	height: 70%; */
+}
+.video{
+	display: flex;
+	position: absolute;
+	padding-top: 5%;
+	z-index: 1;
+	overflow: auto;
+	width: 43%;
+	height: 50%;
+	background: rgba(255, 255, 255, 0.1);
 }
 

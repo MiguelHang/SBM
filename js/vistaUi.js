@@ -143,6 +143,9 @@ function uiTrickDiv(trucos){
 
 	for (let  i in trucos) {
 		document.getElementById("trucos").innerHTML+="<input type='checkbox' name='truco' id='truco"+i+"' value='"+
-															trucos[i].nombre+"'>"+trucos[i].nombre+"<br/>";
+												 trucos[i].nombre+"'>"+trucos[i].nombre+"<input type='submit' id='ver"+i+"'class='video"+i+"' value='ver' onClick='onClick_trucoVideo(event)'><br/>";
+		document.getElementById("video").innerHTML+="<div id='video"+i+"' class='videoNo'>"+trucos[i].link+"<br/></div>";
+		// document.getElementById("ver"+i).addEventListener("click", onClick_trucoVideo);
 	}
+
 }
