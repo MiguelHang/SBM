@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" type="text/css" href="css/sbm.css">
+		<title>SBM</title>
+		<script src="js/constantes.js"></script>
+	    <script src="js/Modelo_Clases_BBDD.js"></script>
+	    <script src="js/control_event.js"></script>
+	    <script src="js/vistaUi.js"></script>
+	    <script src="js/modelo_BBDD.js"></script>
+	    <script src="js/control_comu.js"></script>
+		<script>
+        function main() {
+            inicio();
+        }
+    </script>
+    <script>
+        /* detectar el idioma, cargar el fichero correspondiente*/
+        /* es necesario lo primero para tener disponibles las traducciones */
+
+        const idioms=new Set();
+        idioms.add("es").add("en");//idiomas presentes en el directorio i18n
+
+        const ln = x=window.navigator.language||navigator.browserLanguage; //idioma del navegador
+        LENG=ln.split("-")[0].toLowerCase();  //recogemos el idioma principal
+        LENG=idioms.has(LENG)?LENG:"es";//idioma por defecto: es
+        //LENG="en";  //para pruebas de traducción
+        const i18nsrc=document.createElement("script"); //cargamos el idioma del navegador
+        i18nsrc.src=`i18n\\${LENG}.js`;
+        document.getElementsByTagName("head")[0].appendChild(i18nsrc);
+    </script>
+	</head>
+	<body onload="main()">
+		<nav>
+			<div id="idlogo">
+				<img src="img/logo.png">
+			</div>
+			<div id="idMenu">
+				
+			</div>
+		</nav>
+		<div id="contenedor">
+			<div id="central">
+				
+			</div>
+		</div>
+	</body>
+</html>

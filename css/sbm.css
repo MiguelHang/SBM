@@ -1,0 +1,322 @@
+@font-face{
+	font-family: 'TradeGothic';
+	font-style: "#f7b007";
+	src:url('trade-gothic.ttf');
+}
+@font-face{
+	font-family: 'Trade';
+	font-style: "#f7b007";
+	src:url('trade-gothic-lt-1361519976.ttf');
+}
+@font-face{
+	font-family: 'FuturaBd';
+	font-style: "#f7b007";
+	src:url('FutuBd_.ttf');
+}
+@font-face{
+	font-family: 'FuturaBdIt';
+	font-style: "#f7b007";
+	src:url('FutuBdIt.ttf');
+}@font-face{
+	font-family: 'FuturaHv';
+	font-style: "#f7b007";
+	src:url('FutuHv_.ttf');
+}
+@-moz-document url-prefix(){
+    
+    #inicio{
+	margin-top: 27% !important;
+	}
+	#miPerfil{
+	margin-top: 8.5% !important;
+	}
+}
+*{
+	margin: 0;
+	padding: 0;
+}
+
+body, html{
+	height: 100%;
+	width: 100%;
+}
+nav{
+	height: 18.6%;
+	width: 100%;
+	background-color: #ffffff;
+}
+#idlogo{
+	position: absolute;
+	width: 20%;
+	height: 26.8%;
+	margin-top: 3%;
+	margin-left: 8%;
+}
+#idlogo img{
+	display: flex;
+	width: 60%;
+
+}
+#contenedor{
+	display: flex;
+	height: 81.4%;
+	width: 100%;
+	background-image: url("../img/fondoInicio.jpg"); 
+	background-size: cover;
+	justify-content: center;
+}
+#central{
+	display: flex;
+	width: 84%;
+	justify-content: center;
+}
+#inicio{
+	/* border-style: solid; */
+	margin-top: 12.5%;
+	width: 40%;
+	height: 30%;
+	text-align: center;
+}
+#eslogan1{
+	color: #ffffff;
+	font-family: Trade;
+	font-size: 9.2vw;
+	height: 65%;
+}
+#eslogan2{
+	color: #ffffff;
+	font-family: Trade; /* Gothic */
+	font-size: 7.5vw;
+}
+#botonLog{
+	border-style: none;
+	border-radius: 4px;
+	width: 27%;
+	height: 20%;
+	background-color: #ffffff;
+	color: #111111;
+	margin: 2%;
+	font-family: FuturaBd;
+}
+#botonPrueba{
+	border-style: none;
+	border-radius: 4px;
+	width: 27%;
+	height: 20%;
+	background-color: #000000;
+	color:#ffffff;
+	margin: 2%;
+	font-family: FuturaBd;	
+}
+#login{
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	border-radius: 4px;
+	background-color: #ffffff;
+	width: 40%;
+	height: 85%;
+	margin-top: 5%;
+}
+#login input{
+	width: 50%;
+	height: 7%;
+	margin: 3%;
+	margin-left: 25%;
+
+}
+#imgUser{
+	width: 20%;
+	height: 20%;
+	margin-left: 40%;
+}
+#entrar{
+	border-style: solid;
+	border-width: 1.5px;
+	border-radius: 4px;
+	width: 27%;
+	height: 20%;
+	background-color: #ffffff;
+	color: #111111;
+	margin: 2%;
+	font-family: FuturaBd;
+}
+#regis{
+	border-style: none;
+	border-radius: 4px;
+	width: 27%;
+	height: 20%;
+	background-color: #000000;
+	color:#ffffff;
+	margin: 2%;
+	font-family: FuturaBd;	
+}
+#registro{
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	border-radius: 4px;
+	background-color: #ffffff;
+	width: 40%;
+	height: 85%;
+	margin-top: 5%;
+}
+#registro input{
+	width: 50%;
+	height: 7%;
+	margin: 3%;
+	margin-left: 25%;
+}
+
+#crear{
+	border-style: none;
+	border-radius: 4px;
+	width: 27%;
+	height: 20%;
+	background-color: #000000;
+	color:#ffffff;
+	margin: 2%;
+	font-family: FuturaBd;
+}
+#idMenu{
+	margin-left: 55%;
+	border-style: solid;
+	border-width: 0.01px;
+	border-color: #ffffff;
+	width: 40%;
+}
+#barra a{
+	text-decoration: none;
+	font-family: FuturaBd;
+	font-size: 2.1vh;
+	color:#111111;
+}
+#barra{
+	margin-top: 16%;
+	display: flex;
+	justify-content: space-between;
+}
+#miPerfil{
+	margin-top: 5%;
+	height: 85%;
+	width: 90%;
+	background: rgba(255, 255, 255, 0.6);
+	display: flex;
+	justify-content: space-between;
+}
+#datos{
+	width: 50%;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+#datos p{
+	font-family: FuturaBd;
+	color: #111111;
+	text-align: center;
+	font-size: 5vh;
+}
+#datos input{
+	margin-left: 38%;
+}
+#imgUserP{
+	width: 30%;
+	height: 30%;
+	margin-left: 35%;
+}
+#tablaTrucos{
+	padding-top: 5%;
+	width: 50%;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	font-family: FuturaBd;
+}
+#pendientes, #hechos{
+	width: 80%;
+	height: 70%;
+	background-color: #ffffff;
+	overflow: auto;
+}
+.btnBlanco{
+	border-style: solid;
+	border-width: 1.5px;
+	border-radius: 4px;
+	width: 25%;
+	height: 8%;
+	background-color: #ffffff;
+	color: #111111;
+	margin: 2%;
+	font-family: FuturaBd;
+}
+.btnNegro{
+	border-style: none;
+	border-radius: 4px;
+	width: 25%;
+	height: 8%;
+	background-color: #000000;
+	color:#ffffff;
+	margin: 2%;
+	font-family: FuturaBd;
+}
+
+/* Style the tab */
+div.tab {
+	width: 44%;
+    overflow: hidden;
+    background-color: #ffffff;
+   margin-left: 40.7%;
+}
+
+/* Style the links inside the tab */
+div.tab a {
+    float: left;
+    display: block;
+    color: #111111;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    transition: 0.3s;
+    font-size: 17px;
+}
+
+/* Change background color of links on hover */
+div.tab a:hover {
+    background-color: #111111;
+    color:#ffffff;
+
+}
+
+/* Create an active/current tablink class */
+div.tab a:focus .active {
+    background-color: #111111;
+    color:#ffffff;
+}
+
+/* Style the tab content */
+.tabcontent {
+    display: none;
+    padding: 6px 12px;
+    border-top: none;
+}
+#trick{
+	margin-top: 5%;
+	height: 85%;
+	width: 90%;
+	background: rgba(255, 255, 255, 0.6);
+	display: flex;
+	justify-content: space-between;
+}
+#trucos{
+	background-color: #ffffff;
+	width: 50%;
+	height: 77%;
+	margin: 5%;
+	padding-left:3%;
+	padding-top:3%;
+	font-size: 3vh;
+	font-family: FuturaBd;
+	overflow: auto;
+}
+

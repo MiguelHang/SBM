@@ -1,0 +1,62 @@
+{"trucos":[
+	{
+		"nombre":"ollie",
+		"tipo":"flat",
+		"link":"<iframe width='560' height='315' src='https://www.youtube.com/embed/2tgOPrG1p6A' frameborder='0' allowfullscreen></iframe>"
+	},
+	{
+		"nombre":"fs ollie",
+		"tipo":"flat",
+		"link":"<iframe width='560' height='315' src='http://theberrics.com/video/post/embed/id/1269/' frameborder='0' scrolling='no' allowfullscreen></iframe>"
+	},
+	{
+		"nombre":"bs ollie",
+		"tipo":"flat",
+		"link":"<iframe width='560' height='315' src='http://theberrics.com/video/post/embed/id/8481/' frameborder='0' scrolling='no' allowfullscreen></iframe>"
+	},
+	{
+		"nombre":"flip",
+		"tipo":"flat",
+		"link":"<iframe width='560' height='315' src='https://www.youtube.com/embed/uUoneTk2aSs' frameborder='0' allowfullscreen></iframe>"
+	},
+	{
+		"nombre":"heelflip",
+		"tipo":"flat",
+		"link":"<iframe width='560' height='315' src='http://theberrics.com/video/post/embed/id/1049/' frameborder='0' scrolling='no' allowfullscreen></iframe>"
+	},
+	{
+		"nombre":"shove it",
+		"tipo":"flat",
+		"link":""
+	},
+	{
+		"nombre":"fs shoveit",
+		"tipo":"flat",
+		"link":""
+	},
+	{
+		"nombre":"360 shoveit",
+		"tipo":"flat",
+		"link":""
+	},
+	{
+		"nombre":"360flip",
+		"tipo":"flat",
+		"link":""
+	},
+	{
+		"nombre":"varialflip",
+		"tipo":"flat",
+		"link":""
+	},
+	{
+		"nombre":"varialheel",
+		"tipo":"flat",
+		"link":""
+	},
+	{
+		"nombre":"inward",
+		"tipo":"flat",
+		"link":""
+	}
+]}
