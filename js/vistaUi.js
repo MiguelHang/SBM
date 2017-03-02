@@ -185,3 +185,39 @@ function autoComplet(availableTags){
     });
   } );
 }
+
+function uiCarga(us){
+	
+	setTimeout(function(){getUsers(cargarD,us)}, 1000);
+}
+function uiJuego(){
+	let skate=JSON.parse(sessionStorage.SKATE);
+	let players=JSON.parse(sessionStorage.PLAYERS);
+	let randTruco=skate[Math.floor(Math.random()*skate.length)];
+	let randPlayer=players[Math.floor(Math.random()*players.length)];
+
+	document.getElementById("trucoNow").innerText=randTruco;
+	document.getElementById("turnoPlayer").innerText=randPlayer;
+
+	sessionStorage.setItem("JUEGO", JSON.stringify({"usuario":randPlayer, "truco":randTruco})); 
+
+	/*traduccion*/
+	document.getElementById("trucoTXT").innerText=i18n["TRUCO"];
+	document.getElementById("turnoTXT").innerText=i18n["TURNO"];
+	/*add eventos*/
+	document.getElementById("falseBtn").addEventListener("click", onClick_noTruco);
+	document.getElementById("trueBtn").addEventListener("click", onClick_truco);
+}
+function actualizarDatos(){
+	let juego=JSON.parse(sessionStorage.getItem("JUEGO"));
+
+	document.getElementById("trucoNow").innerText=juego.truco;
+	document.getElementById("turnoPlayer").innerText=juego.usuario;
+}
+function actualizarDatosT(){
+	let juego=JSON.parse(sessionStorage.getItem("JUEGO"));
+
+console.log("actualizar datos"+juego.truco);
+	document.getElementById("trucoNow").innerText=juego.truco;
+	document.getElementById("turnoPlayer").innerText=juego.usuario;
+}

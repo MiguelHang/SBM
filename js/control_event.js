@@ -269,7 +269,7 @@ function onClick_trucoVideo(event){
 	}
 
 }
-function onClick_addPlayer(){
+function onClick_addPlayer(){//No se está implementado
 
 	let nHijos=((document.getElementById("playerDiv").children.length)-6)/2;
 
@@ -281,5 +281,62 @@ function onBlur_players(){
 	getUsers(autoComplet);
 }
 function onClick_play(){
-
+	let us=document.getElementById("player1").value;
+	if (us==""||us==undefined) {
+		document.getElementById("player1").style.borderColor="red";
+	}else{
+		// document.getElementById("play").className=us;
+		cargarLayout(document.getElementById("skateDiv"), CARGAR, uiCarga(us));
+	}
+}
+function cargarD(usuario){
+	/* preparar los trucos*/
+	let contrincanteH=usuario[0].hechos;
+	let aspiranteH=JSON.parse(sessionStorage.getItem("USUARIO")).hechos;
+	let mezclaH=contrincanteH.concat(aspiranteH);
+	let contrincanteP=usuario[0].pendientes;
+	let aspiranteP=JSON.parse(sessionStorage.getItem("USUARIO")).pendientes;
+	let mezclaP=contrincanteP.concat(aspiranteP);
+	let mezcla=mezclaH.concat(mezclaP);
+	mezcla=eliminarDuplicados(mezcla);
+	sessionStorage.setItem("SKATE", JSON.stringify(mezcla));
+	/*preparar los ausuarios*/
+	let players=[usuario[0].user, JSON.parse(sessionStorage.getItem("USUARIO")).user];
+	sessionStorage.setItem("PLAYERS", JSON.stringify(players));
+	/*cargar layout del juego*/
+	cargarLayout(document.getElementById("central"),JUEGO, uiJuego);
+}
+function onClick_noTruco(){
+	//pierde el turno y el truco se queda
+	let juego= JSON.parse(sessionStorage.getItem("JUEGO"));
+	let players= JSON.parse(sessionStorage.getItem("PLAYERS"));
+	let skate=JSON.parse(sessionStorage.getItem("SKATE"));
+	let randTruco=skate[Math.floor(Math.random()*skate.length)];
+	let nombre;
+	for (i in players){
+			if(players[i]!=juego.usuario){
+				nombre=players[i];
+			}
+	}
+	sessionStorage.setItem("JUEGO", JSON.stringify({"usuario":nombre, "truco":randTruco}));
+	//cargar datos en div usuario y truco utilizando el session Juego y skate
+	actualizarDatos();
+}
+function onClick_truco(){
+	//se queda el turno y el truco se quita
+	let juego= JSON.parse(sessionStorage.getItem("JUEGO")).truco;
+	let trucos= JSON.parse(sessionStorage.getItem("SKATE"));
+	let nombre= JSON.parse(sessionStorage.getItem("JUEGO")).usuario;
+	for (i in trucos){
+			if(trucos[i]==juego){
+				trucos.splice(i, 1);
+				console.log('on click splice'+trucos);
+			}
+	}
+	let randTruco=trucos[Math.floor(Math.random()*trucos.length)];
+	console.log('on click si truco'+trucos);
+	sessionStorage.setItem("JUEGO", JSON.stringify({"usuario":nombre, "truco":randTruco}));
+	sessionStorage.setItem("SKATE", JSON.stringify(trucos));
+	//cargarLayout en div truco utilizando el session skate random
+	actualizarDatosT();
 }

@@ -22,4 +22,7 @@ i18n["HECHO"]="Hecho";
 i18n["CANCELAR"]="Cancelar";
 i18n["ADDPLUS"]="+";
 i18n["COMENZAR"]="Comenzar";
+i18n["TURNO"]="Turno:";
+i18n["TRUCO"]="Truco:";
+
 
