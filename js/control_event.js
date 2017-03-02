@@ -1,13 +1,27 @@
 function inicio(){
 	// Esta funcion se llama al cargar por primera vez la aplicación
-	cargarLayout(document.getElementById("central"), INICIO, uiLoguear);
+	if (sessionStorage.getItem("USUARIO")){
+			cargarLayout(document.getElementById("idMenu"), NAV, uiNav);
+			cargarLayout(document.getElementById("central"), MIPERFIL, uiPerfil);
+			cargarLayout(document.getElementById("salirDiv"), SALIR, uiSalir);
+	}else{
+		cargarLayout(document.getElementById("central"), INICIO, uiLoguear);
+	}
+	
 }
 
 function onClick_LogIn(){
 	//Esta funcion carga el log in
 	cargarLayout(document.getElementById("central"), LOGIN, uiLogin);
 }
+function onClick_salir(){
+	sessionStorage.removeItem("USUARIO");
+	cargarLayout(document.getElementById("central"), LOGIN, uiLogin);
+	document.getElementById("salirDiv").innerHTML="";
+	document.getElementById("idMenu").innerHTML="";
 
+
+}
 function onClick_Regis(){
 	//Carga elformulario de registro
 	cargarLayout(document.getElementById("central"), REGISTRO, uiRegistrar);
@@ -16,6 +30,7 @@ function onClick_Entrar_cb(validado){
 	if (validado) {
 	cargarLayout(document.getElementById("idMenu"), NAV, uiNav);
 	cargarLayout(document.getElementById("central"), MIPERFIL, uiPerfil);
+	cargarLayout(document.getElementById("salirDiv"), SALIR, uiSalir);
 	}else {
 		alert("Usuario incorrecto");
 	}
@@ -165,6 +180,10 @@ function onClick_trick(){
 	cargarJSON(uiTrickDiv);
 
 }
+function onClick_skate(){
+	cargarLayout(document.getElementById("central"), SKATE, uiSkate);
+}
+
 function onClick_addP(){
 	let nHijos=(document.getElementById("trucos").children.length)/3;
 	let selecion=[];
@@ -250,4 +269,15 @@ function onClick_trucoVideo(event){
 		document.getElementById(event.target.className).className="video";
 	}
 
+}
+function onClick_addPlayer(){
+
+	let nHijos=((document.getElementById("playerDiv").children.length)-6)/2;
+
+	let input=document.createElement("INPUT");
+	input.setAttribute("id", nHijos+1);
+	document.getElementById("playerDiv").insertBefore(input, document.getElementById("addPlayer"));
+}
+function onClick_play(){
+	
 }

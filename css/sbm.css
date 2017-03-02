@@ -57,6 +57,18 @@ nav{
 	width: 60%;
 
 }
+#absoluto{
+	height: 100%;
+	width: 10%;
+}
+#salirDiv{
+	margin-top: 2%;
+	margin-left: 45%;
+	position: absolute;
+	display: flex;
+	height: 10%;
+	width: 10%;
+}
 #contenedor{
 	display: flex;
 	height: 81.4%;
@@ -228,7 +240,7 @@ nav{
 #tablaTrucos{
 	padding-top: 5%;
 	width: 50%;
-	height: 100%;
+	height: 90%;
 	display: flex;
 	flex-direction: column;
 	font-family: FuturaBd;
@@ -259,6 +271,19 @@ nav{
 	color:#ffffff;
 	margin: 2%;
 	font-family: FuturaBd;
+}
+.btnSalir{
+	border-style: none;
+	border-radius: 4px;
+	width: 6vw;
+	height: 4vh;
+	background-color: rgba(0, 0, 0, 0.48);
+	color:#ffffff;
+	margin: 2%;
+	font-family: FuturaBd;
+}
+.btnSalir:hover{
+	background-color: #000000;
 }
 
 /* Style the tab */
@@ -337,4 +362,28 @@ div.tab a:focus .active {
 	height: 50%;
 	background: rgba(255, 255, 255, 0.1);
 }
-
+#skateDiv{
+	margin-top: 5%;
+	height: 85%;
+	width: 90%;
+	background: rgba(255, 255, 255, 0.6);
+	display: flex;
+	justify-content: space-between;
+}
+#playerDiv{
+	text-align: center;
+	background-color: #ffffff;
+	width: 30%;
+	height: 77%;
+	margin: 5% 0% 0% 35%;
+	padding-left:1%;
+	padding-top:3%;
+	font-size: 3vh;
+	font-family: FuturaBd;
+	overflow: auto;
+}
+#playerDiv input{
+	margin: 2%;
+	height: 4vh;
+	width: 18vw;
+}

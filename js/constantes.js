@@ -10,6 +10,8 @@ const MIPERFIL="ui/perfil.html";
 const PENDIENTESE="ui/pendientesE.html";
 const HECHOSE="ui/hechosE.html";
 const TRICK="ui/tricklist.html";
+const SKATE="ui/skate.html";
+const SALIR="ui/salir.html";
 
 /*BBDD*/
 const VERSION_BD=2;

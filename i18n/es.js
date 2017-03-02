@@ -1,6 +1,7 @@
 let i18n=[];
 
 i18n["LOGIN"]="Entrar";
+i18n["SALIR"]="Salir";
 i18n["PROBAR"]="Probar";
 i18n["USUARIO"]="Usuario";
 i18n["NOMBRE"]="Nombre";
@@ -19,4 +20,6 @@ i18n["ADD"]="Añandir";
 i18n["QUITAR"]="Quitar";
 i18n["HECHO"]="Hecho";
 i18n["CANCELAR"]="Cancelar";
+i18n["ADDPLUS"]="+";
+i18n["COMENZAR"]="Comenzar";
 

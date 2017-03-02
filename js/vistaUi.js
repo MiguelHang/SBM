@@ -7,6 +7,11 @@ function uiLoguear(){
 	document.getElementById("botonLog").addEventListener("click", onClick_LogIn);
 	document.getElementById("botonPrueba").addEventListener("click", onClick_Probar);
 }
+function uiSalir(){
+	document.getElementById("salirbtn").addEventListener("click", onClick_salir);
+	document.getElementById("salirbtn").value=i18n["SALIR"];
+}
+
 function uiLogin(){
 	//Añade los eventos de entar en la cuenta o crear una cuenta
 	/*traducción*/
@@ -44,6 +49,7 @@ function uiNav(){
 	/*eventos*/
 	document.getElementById("perfil").addEventListener("click", onClick_perfil);
 	document.getElementById("tricklist").addEventListener("click", onClick_trick);
+	document.getElementById("skate").addEventListener("click", onClick_skate);
 
 }
 function uiPerfil(){
@@ -143,9 +149,20 @@ function uiTrickDiv(trucos){
 
 	for (let  i in trucos) {
 		document.getElementById("trucos").innerHTML+="<input type='checkbox' name='truco' id='truco"+i+"' value='"+
-												 trucos[i].nombre+"'>"+trucos[i].nombre+"<input type='submit' id='ver"+i+"'class='video"+i+"' value='ver' onClick='onClick_trucoVideo(event)'><br/>";
+													trucos[i].nombre+"'>"+trucos[i].nombre+"<input type='submit' id='ver"+i+"'class='video"+i
+													+"' value='ver' onClick='onClick_trucoVideo(event)'><br/>";
 		document.getElementById("video").innerHTML+="<div id='video"+i+"' class='videoNo'>"+trucos[i].link+"<br/></div>";
 		// document.getElementById("ver"+i).addEventListener("click", onClick_trucoVideo);
 	}
 
+}
+
+function uiSkate(){
+	document.getElementById("play").value=i18n["COMENZAR"];
+	document.getElementById("addPlayer").value=i18n["ADDPLUS"];
+	let US=JSON.parse(sessionStorage.getItem("USUARIO"));
+	document.getElementById("player0").innerHTML=US.name;
+
+	document.getElementById("addPlayer").addEventListener("click", onClick_addPlayer);
+	document.getElementById("play").addEventListener("click", onClick_play);
 }
