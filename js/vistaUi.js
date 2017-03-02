@@ -43,13 +43,14 @@ function uiRegistrar(){
 function uiNav(){
 	/*traducción*/
 	document.getElementById("perfil").innerText=i18n["PERFIL"];
-	document.getElementById("entrenar").innerText=i18n["ENTRENAR"];
 	document.getElementById("skate").innerText=i18n["SKATEP"];
 	document.getElementById("tricklist").innerText=i18n["TRICKLIST"];
+	document.getElementById("salir").innerText=i18n["SALIR"];
 	/*eventos*/
 	document.getElementById("perfil").addEventListener("click", onClick_perfil);
 	document.getElementById("tricklist").addEventListener("click", onClick_trick);
 	document.getElementById("skate").addEventListener("click", onClick_skate);
+	document.getElementById("salir").addEventListener("click", onClick_salir);
 
 }
 function uiPerfil(){
@@ -159,10 +160,28 @@ function uiTrickDiv(trucos){
 
 function uiSkate(){
 	document.getElementById("play").value=i18n["COMENZAR"];
-	document.getElementById("addPlayer").value=i18n["ADDPLUS"];
+	// document.getElementById("addPlayer").value=i18n["ADDPLUS"];
 	let US=JSON.parse(sessionStorage.getItem("USUARIO"));
 	document.getElementById("player0").innerHTML=US.name;
-
-	document.getElementById("addPlayer").addEventListener("click", onClick_addPlayer);
+	
+	document.getElementById("player1").addEventListener("focus", onBlur_players);
+	// document.getElementById("addPlayer").addEventListener("click", onClick_addPlayer);
 	document.getElementById("play").addEventListener("click", onClick_play);
+
+
+}
+
+function autoComplet(availableTags){
+	let users=[];
+	let us=JSON.parse(sessionStorage.USUARIO).user;
+	for (i in availableTags) {
+		if(availableTags[i].user!==us)
+		users.push(availableTags[i].user);
+	}
+	  $( function() {
+    // var availableTags;
+    $( "#player1" ).autocomplete({
+      source: users
+    });
+  } );
 }

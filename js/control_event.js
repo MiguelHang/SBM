@@ -17,7 +17,6 @@ function onClick_LogIn(){
 function onClick_salir(){
 	sessionStorage.removeItem("USUARIO");
 	cargarLayout(document.getElementById("central"), LOGIN, uiLogin);
-	document.getElementById("salirDiv").innerHTML="";
 	document.getElementById("idMenu").innerHTML="";
 
 
@@ -278,6 +277,9 @@ function onClick_addPlayer(){
 	input.setAttribute("id", nHijos+1);
 	document.getElementById("playerDiv").insertBefore(input, document.getElementById("addPlayer"));
 }
+function onBlur_players(){
+	getUsers(autoComplet);
+}
 function onClick_play(){
-	
+
 }

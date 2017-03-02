@@ -318,6 +318,10 @@ div.tab a:focus .active {
     background-color: #111111;
     color:#ffffff;
 }
+div.tab a:active {
+    background-color: #111111;
+    color:#ffffff;
+}
 
 /* Style the tab content */
 .tabcontent {

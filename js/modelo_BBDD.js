@@ -59,7 +59,28 @@ function guardarUsuario(){
     alert("Cambios guardados");
 }
 */
+function getUsers(cb, patron=""){
+    if (!db) return false;
+    let customerObjectStore=db.transaction("usuarios", "readwrite").objectStore("usuarios");
 
+    let usuarios = [];//fuera obligatorio para que no se reinici cada vez
+
+    customerObjectStore.openCursor().onsuccess = function(event) {
+        let cursor = event.target.result;
+        let regPatron=new RegExp(".*","i"); //i ignora mayúsculas y minúsculas
+        if (cursor) {
+            //solo devolvemos aquellos que cumplen el patrón
+            if (patron.length) regPatron=new RegExp(".*"+patron+".*","i"); //cambiar a "^" si solo al principio
+            if (cursor.value.name.match(regPatron))
+                usuarios.push(cursor.value);
+            cursor.continue();
+        }
+        else {
+            cb(usuarios);
+        }
+
+    };
+}
 /*Implementación de la BBDD*/
 
 let db;

@@ -1,7 +1,7 @@
 let i18n=[];
 
 i18n["LOGIN"]="Entrar";
-i18n["SALIR"]="Salir";
+i18n["SALIR"]="SALIR";
 i18n["PROBAR"]="Probar";
 i18n["USUARIO"]="Usuario";
 i18n["NOMBRE"]="Nombre";
