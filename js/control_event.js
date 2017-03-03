@@ -83,7 +83,7 @@ function onClick_grabarUsuario(e) {
     ),newUsuario);
     if (newUsuario)//recargar el central solo cuando se crea un nuevo usuario desde la gestión
         cargarLayout(document.getElementById("central"), LOGIN, uiLogin);
-    alert("Usuario creado correctamente");
+    	console.log('nice');
     newUsuario=false;
 }
 
@@ -308,35 +308,85 @@ function cargarD(usuario){
 }
 function onClick_noTruco(){
 	//pierde el turno y el truco se queda
+	let ponedor= JSON.parse(sessionStorage.getItem("PONEDOR")).ponedor;
 	let juego= JSON.parse(sessionStorage.getItem("JUEGO"));
-	let players= JSON.parse(sessionStorage.getItem("PLAYERS"));
-	let skate=JSON.parse(sessionStorage.getItem("SKATE"));
-	let randTruco=skate[Math.floor(Math.random()*skate.length)];
-	let nombre;
-	for (i in players){
-			if(players[i]!=juego.usuario){
-				nombre=players[i];
-			}
+	if(ponedor==juego.turno){
+		let players= JSON.parse(sessionStorage.getItem("PLAYERS"));
+		let skate=JSON.parse(sessionStorage.getItem("SKATE"));
+		let randTruco=skate[Math.floor(Math.random()*skate.length)];
+		let nombre;
+		for (i in players){
+				if(players[i]!=juego.turno){
+					nombre=players[i];
+				}
+		}
+		sessionStorage.setItem("JUEGO", JSON.stringify({"turno":nombre, "truco":randTruco}));
+		sessionStorage.setItem("PONEDOR", JSON.stringify({"ponedor":nombre}));		
+	}else{
+		let players= JSON.parse(sessionStorage.getItem("PLAYERS"));
+		let skate=JSON.parse(sessionStorage.getItem("SKATE"));
+		let randTruco=skate[Math.floor(Math.random()*skate.length)];
+		let nombre;
+		for (i in players){
+				if(players[i]!=juego.turno){
+					nombre=players[i];
+				}
+		}
+		sessionStorage.setItem("JUEGO", JSON.stringify({"turno":nombre, "truco":randTruco}));
+		sessionStorage.setItem("PONEDOR", JSON.stringify({"ponedor":nombre}));
+		//falta sumar letra
 	}
-	sessionStorage.setItem("JUEGO", JSON.stringify({"usuario":nombre, "truco":randTruco}));
 	//cargar datos en div usuario y truco utilizando el session Juego y skate
 	actualizarDatos();
 }
 function onClick_truco(){
 	//se queda el turno y el truco se quita
-	let juego= JSON.parse(sessionStorage.getItem("JUEGO")).truco;
-	let trucos= JSON.parse(sessionStorage.getItem("SKATE"));
-	let nombre= JSON.parse(sessionStorage.getItem("JUEGO")).usuario;
-	for (i in trucos){
-			if(trucos[i]==juego){
-				trucos.splice(i, 1);
-				console.log('on click splice'+trucos);
-			}
+	let ponedor= JSON.parse(sessionStorage.getItem("PONEDOR")).ponedor;
+	let juego= JSON.parse(sessionStorage.getItem("JUEGO"));
+
+	if(ponedor==juego.turno){
+		let trucos= JSON.parse(sessionStorage.getItem("SKATE"));
+		let juego= JSON.parse(sessionStorage.getItem("JUEGO"));
+		let players= JSON.parse(sessionStorage.getItem("PLAYERS"));
+		let nombre;
+		for (i in players){
+				if(players[i]!=juego.turno){
+					nombre=players[i];
+				}
+		}
+		sessionStorage.setItem("JUEGO", JSON.stringify({"turno":nombre, "truco":juego.truco}));
+		for (i in trucos){
+				if(trucos[i]==juego.truco){
+					trucos.splice(i, 1);
+					console.log('on click splice'+trucos);
+				}
+		}
+		let randTruco=trucos[Math.floor(Math.random()*trucos.length)];
+		console.log('on click si truco'+trucos);
+		sessionStorage.setItem("SKATE", JSON.stringify(trucos));
 	}
-	let randTruco=trucos[Math.floor(Math.random()*trucos.length)];
-	console.log('on click si truco'+trucos);
-	sessionStorage.setItem("JUEGO", JSON.stringify({"usuario":nombre, "truco":randTruco}));
-	sessionStorage.setItem("SKATE", JSON.stringify(trucos));
+	else{
+		let trucos= JSON.parse(sessionStorage.getItem("SKATE"));
+		let juego= JSON.parse(sessionStorage.getItem("JUEGO"));
+		let players= JSON.parse(sessionStorage.getItem("PLAYERS"));
+		let nombre;
+		for (i in players){
+				if(players[i]!=juego.turno){
+					nombre=players[i];
+				}
+		}
+		sessionStorage.setItem("JUEGO", JSON.stringify({"turno":nombre, "truco":juego.truco}));
+		sessionStorage.setItem("PONEDOR", JSON.stringify({"ponedor":nombre}));
+		for (i in trucos){
+				if(trucos[i]==juego){
+					trucos.splice(i, 1);
+					console.log('on click splice'+trucos);
+				}
+		}
+		let randTruco=trucos[Math.floor(Math.random()*trucos.length)];
+		console.log('on click si truco'+trucos);
+		sessionStorage.setItem("SKATE", JSON.stringify(trucos));
+	}
 	//cargarLayout en div truco utilizando el session skate random
 	actualizarDatosT();
 }

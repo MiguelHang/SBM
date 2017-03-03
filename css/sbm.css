@@ -137,6 +137,24 @@ nav{
 	margin-left: 25%;
 
 }
+#exitLog{
+	position: relative;
+	width: 4%;
+	height: 4%;
+	font-size: 3vh;
+	color: #868585;
+	font-family: FuturaBd;
+	margin-left: 90%;
+}
+#exit{
+	position: relative;
+	width: 4%;
+	height: 4%;
+	font-size: 3vh;
+	color: #868585;
+	font-family: FuturaBd;
+	margin-left: 90%;
+}
 #imgUser{
 	width: 20%;
 	height: 20%;
@@ -398,27 +416,39 @@ div.tab a:active {
 #jugarDiv{
 	margin-top: 5%;
 	height: 85%;
-	width: 90%;
-	background: rgba(255, 255, 255, 0.6);
+	width: 70%;
+	/* background: rgba(255, 255, 255, 0.6); */
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 }
+#game{
+	margin-top: 5%;
+	height: 85%;
+	width: 90%;
+	background: rgba(255, 255, 255, 0.6);
+	display: flex;
+}
 #turno{
 	text-align: center;
-	margin-left: 13%;
+	margin-left: 5%;
 	height: 30%;
-	width: 77%;
+	width: 50%;
 	background-color: #ffffff;
 	font-family: FuturaBd;
 }
 #trucoRandom{
 	text-align: center;
 	background-color: #ffffff;
-	margin-left: 13%;
+	margin-left: 5%;
 	height: 30%;
-	width: 77%;
+	width: 50%;
 	font-family: FuturaBd;
+}
+#letras{
+	height: 77%;
+	width: 30%;
+	background-color: #ffffff;
 }
 #botonesJugar{
 	height: 30%;

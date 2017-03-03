@@ -28,18 +28,22 @@ function setUser(us,newUsuario){
     let customerObjectStore=db.transaction("usuarios", "readwrite").objectStore("usuarios");
     let req=customerObjectStore.get(us.user);
     req.onsuccess  = function(event) {
-        let md=event.target.result;
-        if (md==null && newUsuario) md=us;//cuando creamos uno nuevo
-        md.name=us.name;
-        md.pass=us.pass;
-        md.email=us.email;
-        md.hechos=us.hechos;
-        md.pendientes=us.pendientes;
-        let up=customerObjectStore.put(md);
-        sessionStorage.setItem("USUARIO", JSON.stringify(event.target.result));
-        up.onsuccess=function(){console.log("BBDD_OK");}
-
-        up.onerror=function(){alert("BBDD_ERR");}
+        if(event.target.result && newUsuario==true){
+            alert("user Existete")
+        }else{ 
+            let md=event.target.result;
+            if (md==null && newUsuario) md=us;//cuando creamos uno nuevo
+            md.name=us.name;
+            md.pass=us.pass;
+            md.email=us.email;
+            md.hechos=us.hechos;
+            md.pendientes=us.pendientes;
+            let up=customerObjectStore.put(md);
+            sessionStorage.setItem("USUARIO", JSON.stringify(event.target.result));
+            up.onsuccess=function(){console.log("BBDD_OK");}
+            up.onerror=function(){alert("BBDD_ERR");}
+        }
+        
     };
 }
 

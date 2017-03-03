@@ -20,6 +20,7 @@ function uiLogin(){
 	document.getElementById("usuario").setAttribute("placeholder",i18n["USUARIO"]);
 	document.getElementById("pass").setAttribute("placeholder",i18n["PASS"]);
 	/*eventos*/
+	document.getElementById("exitLog").addEventListener("click", inicio);
 	document.getElementById("entrar").addEventListener("click", onClick_Entrar);
 	document.getElementById("regis").addEventListener("click", onClick_Regis);
 }
@@ -34,6 +35,7 @@ function uiRegistrar(){
 	document.getElementById("crear").value=i18n["CREAR"];
 
 		/*eventos*/
+	document.getElementById("exit").addEventListener("click", onClick_LogIn);
 	document.getElementById("usuario").addEventListener("blur",onBlur_validateUsuario);
 	document.getElementById("nombre").addEventListener("blur",onBlur_validateUsuario);
 	document.getElementById("pass1").addEventListener("blur",onBlur_validateUsuario);
@@ -199,7 +201,8 @@ function uiJuego(){
 	document.getElementById("trucoNow").innerText=randTruco;
 	document.getElementById("turnoPlayer").innerText=randPlayer;
 
-	sessionStorage.setItem("JUEGO", JSON.stringify({"usuario":randPlayer, "truco":randTruco})); 
+	sessionStorage.setItem("JUEGO", JSON.stringify({"turno":randPlayer, "truco":randTruco}));
+	sessionStorage.setItem("PONEDOR", JSON.stringify({"ponedor":randPlayer})); 
 
 	/*traduccion*/
 	document.getElementById("trucoTXT").innerText=i18n["TRUCO"];
@@ -212,12 +215,16 @@ function actualizarDatos(){
 	let juego=JSON.parse(sessionStorage.getItem("JUEGO"));
 
 	document.getElementById("trucoNow").innerText=juego.truco;
-	document.getElementById("turnoPlayer").innerText=juego.usuario;
+	document.getElementById("turnoPlayer").innerText=juego.turno;
 }
 function actualizarDatosT(){
 	let juego=JSON.parse(sessionStorage.getItem("JUEGO"));
+	let skate=JSON.parse(sessionStorage.SKATE);
 
 console.log("actualizar datos"+juego.truco);
 	document.getElementById("trucoNow").innerText=juego.truco;
-	document.getElementById("turnoPlayer").innerText=juego.usuario;
+	document.getElementById("turnoPlayer").innerText=juego.turno;
+
+	let randTruco=skate[Math.floor(Math.random()*skate.length)];
+	sessionStorage.setItem("JUEGO", JSON.stringify({"turno":juego.turno, "truco":randTruco}));
 }
