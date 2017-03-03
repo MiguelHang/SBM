@@ -45,6 +45,19 @@ nav{
 	width: 100%;
 	background-color: #ffffff;
 }
+input{
+	font-size: 2.1vh;
+}
+a{
+	font-size: 2.5vh;
+}
+p{
+	font-size: 1.11vw;
+}
+h2{
+	font-size: 1.81vw;
+
+}
 #idlogo{
 	position: absolute;
 	width: 20%;
@@ -290,6 +303,20 @@ nav{
 	margin: 2%;
 	font-family: FuturaBd;
 }
+input[class^="video"]{
+	border-style: none;
+	border-radius: 4px;
+	width: 15%;
+	height: 5%;
+	color: rgba(167, 162, 162, 0.8);
+	background-color:rgba(132, 128, 128, 0.16);
+	margin: 2%;
+	font-family: FuturaBd;
+}
+input[class^="video"]:hover{
+	background-color: #000000;
+	color:#ffffff;
+}
 .btnSalir{
 	border-style: none;
 	border-radius: 4px;
@@ -303,49 +330,15 @@ nav{
 .btnSalir:hover{
 	background-color: #000000;
 }
-
-/* Style the tab */
-div.tab {
-	width: 44%;
-    overflow: hidden;
-    background-color: #ffffff;
-   margin-left: 40.7%;
+/*Todo es important por que sobreescribo el css de jQuery*/
+#tabs{
+	font-family: FuturaBd !important;
+	height: 85% !important;
+	width: 90% !important;
+	overflow: auto !important;
 }
-
-/* Style the links inside the tab */
-div.tab a {
-    float: left;
-    display: block;
-    color: #111111;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-    transition: 0.3s;
-    font-size: 17px;
-}
-
-/* Change background color of links on hover */
-div.tab a:hover {
-    background-color: #111111;
-    color:#ffffff;
-
-}
-
-/* Create an active/current tablink class */
-div.tab a:focus .active {
-    background-color: #111111;
-    color:#ffffff;
-}
-div.tab a:active {
-    background-color: #111111;
-    color:#ffffff;
-}
-
-/* Style the tab content */
-.tabcontent {
-    display: none;
-    padding: 6px 12px;
-    border-top: none;
+#tabs input{
+	font-family: FuturaBd !important;
 }
 #trick{
 	margin-top: 5%;
@@ -359,7 +352,7 @@ div.tab a:active {
 	background-color: #ffffff;
 	width: 30%;
 	height: 77%;
-	margin: 5%;
+	margin: 5% 5% 0% 5%;
 	padding-left:3%;
 	padding-top:3%;
 	font-size: 3vh;
@@ -416,43 +409,38 @@ div.tab a:active {
 #jugarDiv{
 	margin-top: 5%;
 	height: 85%;
-	width: 70%;
-	/* background: rgba(255, 255, 255, 0.6); */
+	width: 90%;
+	background: rgba(255, 255, 255, 0.6);
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 }
-#game{
-	margin-top: 5%;
-	height: 85%;
-	width: 90%;
-	background: rgba(255, 255, 255, 0.6);
-	display: flex;
-}
 #turno{
 	text-align: center;
-	margin-left: 5%;
+	margin-left: 13%;
 	height: 30%;
-	width: 50%;
+	width: 77%;
 	background-color: #ffffff;
 	font-family: FuturaBd;
 }
 #trucoRandom{
 	text-align: center;
 	background-color: #ffffff;
-	margin-left: 5%;
+	margin-left: 13%;
 	height: 30%;
-	width: 50%;
+	width: 77%;
 	font-family: FuturaBd;
-}
-#letras{
-	height: 77%;
-	width: 30%;
-	background-color: #ffffff;
 }
 #botonesJugar{
 	height: 30%;
 	width: 77%;
 	margin-left: 13%
+	margin-top:5%;
 }
 
+@media (orientation: portrait){
+	body{
+		transform: rotate(90deg);
+
+	}
+}

@@ -67,7 +67,7 @@ function uiPerfil(){
 		document.getElementById("resultH").innerHTML+="<p>"+US.hechos[i]+"</p>";
 	}
 	
-	document.getElementById("defaultOpen").click();//esto lanza por defecto los trucos pendientes
+	openList();
 	document.getElementById("editarP").addEventListener("click", onClick_editarP);
 	document.getElementById("editarH").addEventListener("click", onClick_editarH);
 
@@ -77,33 +77,17 @@ function uiPerfil(){
 	document.getElementById("editarH").value=i18n["EDITAR"];
 	document.getElementById("pendientesTxt").innerHTML=i18n["PENDIENTE"];
 	document.getElementById("hechosTxt").innerHTML=i18n["HECHOS"];
-	document.getElementById("defaultOpen").innerHTML=i18n["PENDIENTE"];
+	document.getElementById("aPendientes").innerHTML=i18n["PENDIENTE"];
 	document.getElementById("aHechos").innerHTML=i18n["HECHOS"];
 	
 	
 }
 /*tabs del perfil*/
-function openList(evt, listName){
-    // Declare all variables
-    var i, tabcontent, tablinks;
-
-    // Get all elements with class="tabcontent" and hide them
-    tabcontent = document.getElementsByClassName("tabcontent");
-    for (i = 0; i < tabcontent.length; i++) {
-        tabcontent[i].style.display = "none";
-    }
-
-    // Get all elements with class="tablinks" and remove the class "active"
-    tablinks = document.getElementsByClassName("tablinks");
-    for (i = 0; i < tablinks.length; i++) {
-        tablinks[i].className = tablinks[i].className.replace(" active", "");
-    }
-
-    // Show the current tab, and add an "active" class to the link that opened the tab
-    document.getElementById(listName).style.display = "block";
-    evt.currentTarget.className += " active";
+function openList(){
+	$( function() {
+    $( "#tabs" ).tabs();
+  } );
 }
-
 function uiPendientesE(){
 	const US=JSON.parse(sessionStorage.getItem("USUARIO"));
 	document.getElementById("nombre").innerHTML=US.user;
@@ -162,6 +146,9 @@ function uiTrickDiv(trucos){
 
 function uiSkate(){
 	document.getElementById("play").value=i18n["COMENZAR"];
+	document.getElementById("skateTxt").innerText=i18n["SKATETXT"];
+	document.getElementById("player1").placeholder=i18n["USUARIO"];
+	document.getElementById("skateH2").innerText=i18n["SKATEP"];
 	// document.getElementById("addPlayer").value=i18n["ADDPLUS"];
 	let US=JSON.parse(sessionStorage.getItem("USUARIO"));
 	document.getElementById("player0").innerHTML=US.name;
@@ -172,6 +159,36 @@ function uiSkate(){
 
 
 }
+function mensaje(titulo, contenido){
+
+    let divAlert = document.createElement("div");
+    divAlert.setAttribute("id", "ventanaAlert");
+    divAlert.setAttribute("title", titulo);
+    document.getElementById("contenedor").appendChild(divAlert);
+
+    let mensaje = document.createElement("p");
+    mensaje.innerHTML = contenido;
+    divAlert.appendChild(mensaje);
+
+    $( function() {
+        $( "#ventanaAlert" ).dialog({
+            //autoOpen: true,
+            dragable:true,
+            close: function( event, ui ) {
+                $( "#ventanaAlert" ).remove();
+            },
+            modal: true,
+            buttons: {
+                Ok: function() {
+                    $( "#ventanaAlert" ).remove();
+                }
+            }
+
+        });
+    } );
+
+}
+
 
 function autoComplet(availableTags){
 	let users=[];
@@ -189,8 +206,8 @@ function autoComplet(availableTags){
 }
 
 function uiCarga(us){
-	
-	setTimeout(function(){getUsers(cargarD,us)}, 1000);
+	console.log('uicarga'+us[0].hechos);
+	setTimeout(function(){getUsers(cargarD, us[0].user)}, 1000);
 }
 function uiJuego(){
 	let skate=JSON.parse(sessionStorage.SKATE);
@@ -200,9 +217,13 @@ function uiJuego(){
 
 	document.getElementById("trucoNow").innerText=randTruco;
 	document.getElementById("turnoPlayer").innerText=randPlayer;
-
+	
+	let puntos=[];
+	puntos[0]=[players[0],0];
+	puntos[1]=[players[1],0];
 	sessionStorage.setItem("JUEGO", JSON.stringify({"turno":randPlayer, "truco":randTruco}));
 	sessionStorage.setItem("PONEDOR", JSON.stringify({"ponedor":randPlayer})); 
+	sessionStorage.setItem("PUNTOS", JSON.stringify(puntos)); 
 
 	/*traduccion*/
 	document.getElementById("trucoTXT").innerText=i18n["TRUCO"];

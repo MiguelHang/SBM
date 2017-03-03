@@ -23,13 +23,13 @@ function BBDDlogout() {
 }
 
 /*Modificar o crear un usuario*/
-function setUser(us,newUsuario){
+function setUser(us,newUsuario){//recibeel objeto ususario y un booleano si en nuevo true
     if (!db) return false;
     let customerObjectStore=db.transaction("usuarios", "readwrite").objectStore("usuarios");
     let req=customerObjectStore.get(us.user);
     req.onsuccess  = function(event) {
         if(event.target.result && newUsuario==true){
-            alert("user Existete")
+            mensaje("Error","user Existete")
         }else{ 
             let md=event.target.result;
             if (md==null && newUsuario) md=us;//cuando creamos uno nuevo
@@ -40,8 +40,9 @@ function setUser(us,newUsuario){
             md.pendientes=us.pendientes;
             let up=customerObjectStore.put(md);
             sessionStorage.setItem("USUARIO", JSON.stringify(event.target.result));
+            newUsuario=true;
             up.onsuccess=function(){console.log("BBDD_OK");}
-            up.onerror=function(){alert("BBDD_ERR");}
+            up.onerror=function(){mensaje("Error","BBDD_ERR");}
         }
         
     };
@@ -74,8 +75,8 @@ function getUsers(cb, patron=""){
         let regPatron=new RegExp(".*","i"); //i ignora mayúsculas y minúsculas
         if (cursor) {
             //solo devolvemos aquellos que cumplen el patrón
-            if (patron.length) regPatron=new RegExp(".*"+patron+".*","i"); //cambiar a "^" si solo al principio
-            if (cursor.value.name.match(regPatron))
+            if (patron.length) regPatron=new RegExp("^"+patron,"i"); //cambiar a "^" si solo al principio
+            if (cursor.value.user.match(regPatron))
                 usuarios.push(cursor.value);
             cursor.continue();
         }
@@ -92,7 +93,7 @@ let request= indexedDB.open("SBM2", VERSION_BD);
 request.onerror = function(event){
 	if(DEBUG){
 		console.log("BBDD Error");
-		alert("Error BBDD"+event);
+		mensaje("Error","Error BBDD"+event);
 	}
 };
 request.onsuccess=function(event){

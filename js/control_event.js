@@ -16,6 +16,11 @@ function onClick_LogIn(){
 }
 function onClick_salir(){
 	sessionStorage.removeItem("USUARIO");
+	sessionStorage.removeItem("JUEGO");
+	sessionStorage.removeItem("PLAYERS");
+	sessionStorage.removeItem("PUNTOS");
+	sessionStorage.removeItem("PONEDOR");
+	sessionStorage.removeItem("SKATE");
 	cargarLayout(document.getElementById("central"), LOGIN, uiLogin);
 	document.getElementById("idMenu").innerHTML="";
 
@@ -31,7 +36,7 @@ function onClick_Entrar_cb(validado){
 	cargarLayout(document.getElementById("central"), MIPERFIL, uiPerfil);
 	cargarLayout(document.getElementById("salirDiv"), SALIR, uiSalir);
 	}else {
-		alert("Usuario incorrecto");
+		mensaje("Error","Usuario incorrecto");
 	}
 }
 function onClick_Entrar(){
@@ -42,7 +47,7 @@ function onClick_Entrar(){
 		BBDDvalidateUser(us, pw, onClick_Entrar_cb);
 	}
 }
-let newUsuario=true;
+let newUsuario=false;
 function onBlur_validateUsuario(e) {
     let validado=true;
     if (DEBUG) console.log("Blur:"+e)
@@ -80,10 +85,9 @@ function onClick_grabarUsuario(e) {
         document.getElementById("nombre").value,
         hechos=[],
         pendientes=[]
-    ),newUsuario);
+    ),true);
     if (newUsuario)//recargar el central solo cuando se crea un nuevo usuario desde la gestión
         cargarLayout(document.getElementById("central"), LOGIN, uiLogin);
-    	console.log('nice');
     newUsuario=false;
 }
 
@@ -113,7 +117,6 @@ function onClick_eliminarP(){
 		for(let j=0; j<num; j++){
 			if(selecion[i]==US.pendientes[j]){
 
-					alert(US.pendientes[j]+" ha sido eliminado");
 					US.pendientes.splice(j, 1);break				
 			}
 		}
@@ -136,7 +139,6 @@ function onClick_eliminarH(){
 		for(let j=0; j<num; j++){
 			if(selecion[i]==US.hechos[j]){
 
-					alert(US.hechos[j]+" ha sido eliminado");
 					US.hechos.splice(j, 1);break;		
 			}
 		}
@@ -158,7 +160,7 @@ function onClick_mover(){
 
 		for(let j=0; j<num; j++){
 			if(selecion[i]==US.hechos[j]){
-				alert("truco ya existente");				
+				mensaje("Atención","Truco ya existente"+slecion[i]);				
 			}else{
 				US.hechos.push(selecion[i]);
 				US.pendientes.splice(j, 1);
@@ -196,14 +198,14 @@ function onClick_addP(){
 		let num=US.pendientes.length;
 	if(num==0){
 		if(selecion[i]==US.pendientes[0]){
-				alert(selecion[i]+" ya existente");	
+				mensaje("Atención",selecion[i]+" ya existente");	
 			}else{
 				US.pendientes.push(selecion[i]);
 			}
 	}else{
 		for(let j=0; j<num; j++){
 			if(selecion[i]==US.pendientes[j]){
-				alert(selecion[i]+" ya existente");	
+				mensaje("Atención",selecion[i]+" ya existente");	
 			}else{
 				US.pendientes.push(selecion[i]);
 			}
@@ -227,14 +229,14 @@ function onClick_addH(){
 		let num=US.hechos.length;
 	if(num==0){
 		if(selecion[i]==US.hechos[0]){
-				alert(selecion[i]+" ya existente");	
+				mensaje("Atención",selecion[i]+" ya existente");	
 			}else{
 				US.hechos.push(selecion[i]);
 			}
 	}else{
 		for(let j=0; j<num; j++){
 			if(selecion[i]==US.hechos[j]){
-				alert(selecion[i]+" ya existente");	
+				mensaje("Atención",selecion[i]+" ya existente");	
 			}else{
 				US.hechos.push(selecion[i]);
 			}
@@ -261,7 +263,6 @@ function eliminarDuplicados(arr) {
 }
 function onClick_trucoVideo(event){
 	
-	console.log(event.target.className);
 	if(document.getElementById(event.target.className).className=="video"){
 	document.getElementById(event.target.className).className="videoNo";
 	}else{
@@ -282,16 +283,22 @@ function onBlur_players(){
 }
 function onClick_play(){
 	let us=document.getElementById("player1").value;
-	if (us==""||us==undefined) {
+	getUsers(play, us);
+}
+function play(us){
+	if (us==""||us==null||us==undefined) {
 		document.getElementById("player1").style.borderColor="red";
 	}else{
 		// document.getElementById("play").className=us;
+		console.log('play us'+us[0].hechos);
 		cargarLayout(document.getElementById("skateDiv"), CARGAR, uiCarga(us));
 	}
 }
 function cargarD(usuario){
 	/* preparar los trucos*/
+	console.log('cargarD '+usuario[0].user);
 	let contrincanteH=usuario[0].hechos;
+	console.log(contrincanteH);
 	let aspiranteH=JSON.parse(sessionStorage.getItem("USUARIO")).hechos;
 	let mezclaH=contrincanteH.concat(aspiranteH);
 	let contrincanteP=usuario[0].pendientes;
@@ -299,14 +306,22 @@ function cargarD(usuario){
 	let mezclaP=contrincanteP.concat(aspiranteP);
 	let mezcla=mezclaH.concat(mezclaP);
 	mezcla=eliminarDuplicados(mezcla);
-	sessionStorage.setItem("SKATE", JSON.stringify(mezcla));
-	/*preparar los ausuarios*/
-	let players=[usuario[0].user, JSON.parse(sessionStorage.getItem("USUARIO")).user];
-	sessionStorage.setItem("PLAYERS", JSON.stringify(players));
-	/*cargar layout del juego*/
-	cargarLayout(document.getElementById("central"),JUEGO, uiJuego);
+	if(mezcla.length<5){
+
+		mensaje(i18n["PROGRESA"], i18n["APRENDEJ"]);
+		cargarLayout(document.getElementById("central"), MIPERFIL, uiPerfil);
+	}else{
+		sessionStorage.setItem("SKATE", JSON.stringify(mezcla));
+		/*preparar los usuarios*/
+		let players=[usuario[0].user, JSON.parse(sessionStorage.getItem("USUARIO")).user];
+		console.log(players);
+		sessionStorage.setItem("PLAYERS", JSON.stringify(players));
+		/*cargar layout del juego*/
+		cargarLayout(document.getElementById("central"),JUEGO, uiJuego);
+	}
 }
 function onClick_noTruco(){
+	//comprobar puntuacion
 	//pierde el turno y el truco se queda
 	let ponedor= JSON.parse(sessionStorage.getItem("PONEDOR")).ponedor;
 	let juego= JSON.parse(sessionStorage.getItem("JUEGO"));
@@ -323,6 +338,24 @@ function onClick_noTruco(){
 		sessionStorage.setItem("JUEGO", JSON.stringify({"turno":nombre, "truco":randTruco}));
 		sessionStorage.setItem("PONEDOR", JSON.stringify({"ponedor":nombre}));		
 	}else{
+
+		let puntos= JSON.parse(sessionStorage.getItem("PUNTOS"));
+		if(puntos[0][1]==4){
+			mensaje("Has ganado", "Ha ganado "+puntos[1][0]);
+			cargarLayout(document.getElementById("central"), SKATE, uiSkate);
+		}else{
+			if(puntos[1][1]==4){
+			mensaje("Has ganado", "Ha ganado "+puntos[0][0]);
+			cargarLayout(document.getElementById("central"), SKATE, uiSkate);
+		}else{
+		if(puntos[0][0]==juego.turno){
+			puntos[0][1]++;
+			sessionStorage.setItem("PUNTOS", JSON.stringify(puntos));
+		}
+		if(puntos[1][0]==juego.turno){
+			puntos[1][1]++;
+			sessionStorage.setItem("PUNTOS", JSON.stringify(puntos));
+		}
 		let players= JSON.parse(sessionStorage.getItem("PLAYERS"));
 		let skate=JSON.parse(sessionStorage.getItem("SKATE"));
 		let randTruco=skate[Math.floor(Math.random()*skate.length)];
@@ -335,8 +368,9 @@ function onClick_noTruco(){
 		sessionStorage.setItem("JUEGO", JSON.stringify({"turno":nombre, "truco":randTruco}));
 		sessionStorage.setItem("PONEDOR", JSON.stringify({"ponedor":nombre}));
 		//falta sumar letra
+		}
 	}
-	//cargar datos en div usuario y truco utilizando el session Juego y skate
+}	//cargar datos en div usuario y truco utilizando el session Juego y skate
 	actualizarDatos();
 }
 function onClick_truco(){
@@ -358,11 +392,9 @@ function onClick_truco(){
 		for (i in trucos){
 				if(trucos[i]==juego.truco){
 					trucos.splice(i, 1);
-					console.log('on click splice'+trucos);
 				}
 		}
 		let randTruco=trucos[Math.floor(Math.random()*trucos.length)];
-		console.log('on click si truco'+trucos);
 		sessionStorage.setItem("SKATE", JSON.stringify(trucos));
 	}
 	else{
@@ -380,11 +412,11 @@ function onClick_truco(){
 		for (i in trucos){
 				if(trucos[i]==juego){
 					trucos.splice(i, 1);
-					console.log('on click splice'+trucos);
+					
 				}
 		}
 		let randTruco=trucos[Math.floor(Math.random()*trucos.length)];
-		console.log('on click si truco'+trucos);
+		
 		sessionStorage.setItem("SKATE", JSON.stringify(trucos));
 	}
 	//cargarLayout en div truco utilizando el session skate random

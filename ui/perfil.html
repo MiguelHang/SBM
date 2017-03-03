@@ -6,24 +6,25 @@
 		<input type="submit" name="editar" id="editar" class="btnBlanco" />
 	</div>
 	<div id="tablaTrucos">
-		<div class="tab">
-		  <a id="defaultOpen" href="javascript:void(0)"  class="tablinks" onclick="openList(event, 'pendientes')">Pendientes</a>
-		  <a id="aHechos" href="javascript:void(0)" class="tablinks" onclick="openList(event, 'hechos')">Hechos</a>
-		</div>
-
-		<div id="pendientes" class="tabcontent">
-		  <h3 id="pendientesTxt"></h3>
-		  <div id="resultP">
-	
-		  </div>
-		  <input type="submit" name="editarP" id="editarP" class="btnNegro"/>
-		</div>
-		<div id="hechos" class="tabcontent">
-		  <h3 id="hechosTxt"></h3>
-		  <div id="resultH">
-		  	
-		  </div>
-		  <input type="submit" name="editarH" id="editarH" class="btnNegro"/>
+		<div id="tabs">
+		<ul>
+		    <li><a href="#pendientes" id="aPendientes"></a></li>
+		    <li><a href="#hechos" id="aHechos"></a></li>
+  		</ul>
+			<div id="pendientes" class="tabcontent">
+			  <h3 id="pendientesTxt"></h3>
+			  <div id="resultP">
+		
+			  </div>
+			  <input type="submit" name="editarP" id="editarP" class="btnNegro"/>
+			</div>
+			<div id="hechos" class="tabcontent">
+			  <h3 id="hechosTxt"></h3>
+			  <div id="resultH">
+			  	
+			  </div>
+			  <input type="submit" name="editarH" id="editarH" class="btnNegro"/>
+			</div>
 		</div>
 	</div>
 </div>
