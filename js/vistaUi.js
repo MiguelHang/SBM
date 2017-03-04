@@ -228,6 +228,8 @@ function uiJuego(){
 	/*traduccion*/
 	document.getElementById("trucoTXT").innerText=i18n["TRUCO"];
 	document.getElementById("turnoTXT").innerText=i18n["TURNO"];
+	document.getElementById("falseBtn").value=i18n["FALLO"];
+	document.getElementById("trueBtn").value=i18n["ACIERTO"];
 	/*add eventos*/
 	document.getElementById("falseBtn").addEventListener("click", onClick_noTruco);
 	document.getElementById("trueBtn").addEventListener("click", onClick_truco);

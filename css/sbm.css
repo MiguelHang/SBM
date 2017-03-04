@@ -58,6 +58,9 @@ h2{
 	font-size: 1.81vw;
 
 }
+h1{
+	font-size: 3vw;
+}
 #idlogo{
 	position: absolute;
 	width: 20%;
@@ -434,8 +437,34 @@ input[class^="video"]:hover{
 #botonesJugar{
 	height: 30%;
 	width: 77%;
-	margin-left: 13%
-	margin-top:5%;
+	margin-left: 13%;
+	margin-top:2%;
+	display: flex;
+	justify-content: space-around;
+}
+#botonesJugar div{
+	height: 100%;
+	width: 100%;
+}
+#falseBtn{
+	border-style: none;
+	border-radius: 4px;
+	width: 30%;
+	height: 17%;
+	background-color: #D10B0B;
+	color:#ffffff;
+	margin-left:40%;
+	font-family: FuturaBd;
+}
+#trueBtn{
+	border-style: none;
+	border-radius: 4px;
+	width: 30%;
+	height: 17%;
+	background-color: #079B1C;
+	color:#ffffff;
+	margin-left:40%;
+	font-family: FuturaBd;
 }
 
 @media (orientation: portrait){

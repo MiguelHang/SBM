@@ -27,3 +27,5 @@ i18n["TRUCO"]="Truco:";
 i18n["SKATETXT"]="Busca otro usuario y compite";
 i18n["PROGRESA"]="Progresa";
 i18n["APRENDEJ"]="Aprende al menos cinco trucos para poder jugar";
+i18n["ACIERTO"]="Acierta";
+i18n["FALLO"]="Falla";
