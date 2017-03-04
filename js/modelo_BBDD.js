@@ -9,12 +9,16 @@ function BBDDvalidateUser(u, p,cb){
     let customerObjectStore=db.transaction("usuarios", "readwrite").objectStore("usuarios");
     let req=customerObjectStore.get(document.getElementById("usuario").value);
     req.onsuccess=function(event){
+        if(event.target.result!=undefined){
         if(event.target.result.pass==document.getElementById("pass").value) validado=true;
         if (validado)
-            sessionStorage.setItem("USUARIO",JSON.stringify(event.target.result)); //hay que guardar en JSON, no admite objeto directo
+            sessionStorage.setItem("USUARIO",JSON.stringify(event.target.result)); //usuario en JSON en sesion
         else
             sessionStorage.removeItem("USUARIO");
         cb(validado);
+    }else{
+        cb(validado);
+        }
     }
 }
 /*eliminar usuario de la sesion*/

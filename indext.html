@@ -30,7 +30,7 @@
         const ln = x=window.navigator.language||navigator.browserLanguage; //idioma del navegador
         LENG=ln.split("-")[0].toLowerCase();  //recogemos el idioma principal
         LENG=idioms.has(LENG)?LENG:"es";//idioma por defecto: es
-        //LENG="en";  //para pruebas de traducción
+        // LENG="en";  //para pruebas de traducción
         const i18nsrc=document.createElement("script"); //cargamos el idioma del navegador
         i18nsrc.src=`i18n\\${LENG}.js`;
         document.getElementsByTagName("head")[0].appendChild(i18nsrc);

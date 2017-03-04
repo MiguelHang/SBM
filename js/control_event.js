@@ -34,7 +34,6 @@ function onClick_Entrar_cb(validado){
 	if (validado) {
 	cargarLayout(document.getElementById("idMenu"), NAV, uiNav);
 	cargarLayout(document.getElementById("central"), MIPERFIL, uiPerfil);
-	cargarLayout(document.getElementById("salirDiv"), SALIR, uiSalir);
 	}else {
 		mensaje("Error","Usuario incorrecto");
 	}
