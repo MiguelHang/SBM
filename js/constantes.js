@@ -14,6 +14,7 @@ const SKATE="ui/skate.html";
 const SALIR="ui/salir.html";
 const CARGAR="ui/carga.html";
 const JUEGO="ui/jugar.html";
+const PERFIL="ui/editPerfil.html";
 
 /*BBDD*/
 const VERSION_BD=2;

@@ -33,7 +33,7 @@ function setUser(us,newUsuario){//recibeel objeto ususario y un booleano si en n
     let req=customerObjectStore.get(us.user);
     req.onsuccess  = function(event) {
         if(event.target.result && newUsuario==true){
-            mensaje("Error","user Existete")
+            mensaje("Error","user Existete");
         }else{ 
             let md=event.target.result;
             if (md==null && newUsuario) md=us;//cuando creamos uno nuevo
@@ -44,7 +44,6 @@ function setUser(us,newUsuario){//recibeel objeto ususario y un booleano si en n
             md.pendientes=us.pendientes;
             let up=customerObjectStore.put(md);
             sessionStorage.setItem("USUARIO", JSON.stringify(event.target.result));
-            newUsuario=true;
             up.onsuccess=function(){console.log("BBDD_OK");}
             up.onerror=function(){mensaje("Error","BBDD_ERR");}
         }

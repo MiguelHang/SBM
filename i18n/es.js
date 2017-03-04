@@ -9,6 +9,7 @@ i18n["MAIL"]="Email";
 i18n["PASS"]="Contraseña";
 i18n["REGISTRO"]="Regristro";
 i18n["CREAR"]="Crear";
+i18n["MODIFICAR"]="Modificar";
 i18n["PERFIL"]="MI PERFIL"
 i18n["ENTRENAR"]="ENTRENAR";
 i18n["SKATEP"]="S.K.A.T.E";

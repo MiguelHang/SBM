@@ -47,6 +47,7 @@ function onClick_Entrar(){
 	}
 }
 let newUsuario=false;
+let recargar=false;
 function onBlur_validateUsuario(e) {
     let validado=true;
     if (DEBUG) console.log("Blur:"+e)
@@ -75,8 +76,8 @@ function onBlur_validateUsuario(e) {
 
 } 
 
-function onClick_grabarUsuario(e) {
-    if (DEBUG) console.log("Grabar:"+e);
+function onClick_grabarUsuario(recargar) {
+    // if (DEBUG) console.log("Grabar:"+e);
     setUser(new User(
         document.getElementById("usuario").value,
         document.getElementById("pass1").value,
@@ -85,7 +86,7 @@ function onClick_grabarUsuario(e) {
         hechos=[],
         pendientes=[]
     ),true);
-    if (newUsuario)//recargar el central solo cuando se crea un nuevo usuario desde la gestión
+    if (recargar)//recargar el central solo cuando se crea un nuevo usuario desde la gestión
         cargarLayout(document.getElementById("central"), LOGIN, uiLogin);
     newUsuario=false;
 }
@@ -93,7 +94,9 @@ function onClick_grabarUsuario(e) {
 function onClick_Probar(){
 	alert("El modo de prueba estrá disponible el 3 de junio");
 }
-
+function onClick_editarPerfil(){
+	cargarLayout(document.getElementById("central"), PERFIL, uiEditar);
+}
 function onClick_editarP(){
 	cargarLayout(document.getElementById("pendientes"), PENDIENTESE, uiPendientesE);
 }
@@ -170,6 +173,18 @@ function onClick_mover(){
 	cargarLayout(document.getElementById("pendientes"), PENDIENTESE, uiPendientesE);
 }
 
+function onClick_modificar(){
+	const US=JSON.parse(sessionStorage.getItem("USUARIO"));
+	setUser(new User(
+		US.user,
+        document.getElementById("pass1").value,
+        document.getElementById("mail").value,
+        document.getElementById("nombre").value,
+        US.hechos,
+        US.pendientes
+    ),false);
+    cargarLayout(document.getElementById("central"), MIPERFIL, uiPerfil);
+}
 /*eventos de nav*/
 function onClick_perfil(){
 	cargarLayout(document.getElementById("central"), MIPERFIL, uiPerfil);
@@ -183,7 +198,7 @@ function onClick_trick(){
 function onClick_skate(){
 	cargarLayout(document.getElementById("central"), SKATE, uiSkate);
 }
-
+/*fin nav*/
 function onClick_addP(){
 	let nHijos=(document.getElementById("trucos").children.length)/3;
 	let selecion=[];

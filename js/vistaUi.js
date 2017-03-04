@@ -40,7 +40,10 @@ function uiRegistrar(){
 	document.getElementById("nombre").addEventListener("blur",onBlur_validateUsuario);
 	document.getElementById("pass1").addEventListener("blur",onBlur_validateUsuario);
 	document.getElementById("pass2").addEventListener("blur",onBlur_validateUsuario);
-	document.getElementById("crear").addEventListener("click",onClick_grabarUsuario);
+	document.getElementById("mail").addEventListener("blur",onBlur_validateUsuario);
+	document.getElementById("crear").addEventListener("click",function(){
+		onClick_grabarUsuario(true);
+	});
 }
 function uiNav(){
 	/*traducción*/
@@ -70,6 +73,7 @@ function uiPerfil(){
 	openList();
 	document.getElementById("editarP").addEventListener("click", onClick_editarP);
 	document.getElementById("editarH").addEventListener("click", onClick_editarH);
+	document.getElementById("editar").addEventListener("click", onClick_editarPerfil);
 
 	/*traducion*/
 	document.getElementById("editar").value=i18n["EDITAR"];
@@ -81,6 +85,27 @@ function uiPerfil(){
 	document.getElementById("aHechos").innerHTML=i18n["HECHOS"];
 	
 	
+}
+function uiEditar(){
+	const US=JSON.parse(sessionStorage.getItem("USUARIO"));
+	/*traducción*/
+	document.getElementById("usuario").value=US.user;
+	document.getElementById("usuario").setAttribute("readonly", "true");
+	document.getElementById("nombre").setAttribute("placeholder",i18n["NOMBRE"]);
+	document.getElementById("nombre").value=US.name;
+	document.getElementById("pass1").setAttribute("placeholder",i18n["PASS"]);
+	document.getElementById("pass2").setAttribute("placeholder",i18n["PASS"]);
+	document.getElementById("mail").setAttribute("placeholder",i18n["MAIL"]);
+	document.getElementById("mail").value=US.email;
+	document.getElementById("crear").value=i18n["MODIFICAR"];
+
+		/*eventos*/
+	document.getElementById("exit").addEventListener("click", onClick_perfil);
+	document.getElementById("nombre").addEventListener("blur",onBlur_validateUsuario);
+	document.getElementById("pass1").addEventListener("blur",onBlur_validateUsuario);
+	document.getElementById("pass2").addEventListener("blur",onBlur_validateUsuario);
+	document.getElementById("mail").addEventListener("blur",onBlur_validateUsuario);
+	document.getElementById("crear").addEventListener("click", onClick_modificar);
 }
 /*tabs del perfil*/
 function openList(){
