@@ -58,10 +58,37 @@ function uiNav(){
 	document.getElementById("salir").addEventListener("click", onClick_salir);
 
 }
+function uiNavAdmin(){
+	/*traducción*/
+	document.getElementById("addTrick").innerText=i18n["ADD"];
+	document.getElementById("perfil").innerText=i18n["PERFIL"];
+	document.getElementById("skate").innerText=i18n["SKATEP"];
+	document.getElementById("tricklist").innerText=i18n["TRICKLIST"];
+	document.getElementById("salir").innerText=i18n["SALIR"];
+	/*eventos*/
+	document.getElementById("addTrick").addEventListener("click", onClick_admin);
+	document.getElementById("perfil").addEventListener("click", onClick_perfil);
+	document.getElementById("tricklist").addEventListener("click", onClick_trick);
+	document.getElementById("skate").addEventListener("click", onClick_skate);
+	document.getElementById("salir").addEventListener("click", onClick_salir);
+
+}
+function uiAdmin(){
+
+	document.getElementById("addT").addEventListener("click", onClick_addT);
+
+	/*traduccion*/
+	document.getElementById("addT").value=i18n["ADD"];
+	document.getElementById("nombreTruco").placeholder=i18n["TRUCO"];
+	document.getElementById("linkTruco").placeholder=i18n["LINK"];
+
+}
+
 function uiPerfil(){
 
 	const US=JSON.parse(sessionStorage.getItem("USUARIO"));
 	document.getElementById("nombre").innerHTML=US.user;
+	document.getElementById("stance").innerHTML=US.name;
 
 	for (let  i in US.pendientes) {
 		document.getElementById("resultP").innerHTML+="<p>"+US.pendientes[i]+"</p>";
@@ -158,7 +185,6 @@ function uiTrick(){
 }
 
 function uiTrickDiv(trucos){
-
 	for (let  i in trucos) {
 		document.getElementById("trucos").innerHTML+="<input type='checkbox' name='truco' id='truco"+i+"' value='"+
 													trucos[i].nombre+"'>"+trucos[i].nombre+"<input type='submit' id='ver"+i+"'class='video"+i
@@ -166,7 +192,19 @@ function uiTrickDiv(trucos){
 		document.getElementById("video").innerHTML+="<div id='video"+i+"' class='videoNo'>"+trucos[i].link+"<br/></div>";
 		// document.getElementById("ver"+i).addEventListener("click", onClick_trucoVideo);
 	}
+	getTrick(uiTrickDiv_callBack);
+}
 
+function uiTrickDiv_callBack(trucos){
+	for (let  i in trucos) {
+		let j=(document.getElementById("trucos").children.length)/3;
+		console.log(j);
+		document.getElementById("trucos").innerHTML+="<input type='checkbox' name='truco' id='truco"+j+"' value='"+
+													trucos[i].nombre+"'>"+trucos[i].nombre+"<input type='submit' id='ver"+j+"'class='video"+j
+													+"' value='ver' onClick='onClick_trucoVideo(event)'><br/>";
+		document.getElementById("video").innerHTML+="<div id='video"+j+"' class='videoNo'>"+trucos[i].link+"<br/></div>";
+		// document.getElementById("ver"+i).addEventListener("click", onClick_trucoVideo);
+	}
 }
 
 function uiSkate(){

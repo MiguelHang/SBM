@@ -1,9 +1,14 @@
 function inicio(){
 	// Esta funcion se llama al cargar por primera vez la aplicación
 	if (sessionStorage.getItem("USUARIO")){
+		const US=JSON.parse(sessionStorage.getItem("USUARIO"));
+		if(US.tipo=="admin"){
+			cargarLayout(document.getElementById("idMenu"), NAVADMIN, uiNavAdmin);
+			cargarLayout(document.getElementById("central"), MIPERFIL, uiPerfil);
+		}else{
 			cargarLayout(document.getElementById("idMenu"), NAV, uiNav);
 			cargarLayout(document.getElementById("central"), MIPERFIL, uiPerfil);
-			cargarLayout(document.getElementById("salirDiv"), SALIR, uiSalir);
+		}
 	}else{
 		cargarLayout(document.getElementById("central"), INICIO, uiLoguear);
 	}
@@ -31,9 +36,15 @@ function onClick_Regis(){
 	cargarLayout(document.getElementById("central"), REGISTRO, uiRegistrar);
 }
 function onClick_Entrar_cb(validado){
-	if (validado) {
-	cargarLayout(document.getElementById("idMenu"), NAV, uiNav);
-	cargarLayout(document.getElementById("central"), MIPERFIL, uiPerfil);
+	if (validado){
+		const US=JSON.parse(sessionStorage.getItem("USUARIO"));
+		if(US.tipo=="admin"){
+			cargarLayout(document.getElementById("idMenu"), NAVADMIN, uiNavAdmin);
+			cargarLayout(document.getElementById("central"), MIPERFIL, uiPerfil);
+		}else{
+			cargarLayout(document.getElementById("idMenu"), NAV, uiNav);
+			cargarLayout(document.getElementById("central"), MIPERFIL, uiPerfil);
+		}
 	}else {
 		mensaje("Error","Usuario incorrecto");
 	}
@@ -186,6 +197,9 @@ function onClick_modificar(){
     cargarLayout(document.getElementById("central"), MIPERFIL, uiPerfil);
 }
 /*eventos de nav*/
+function onClick_admin(){
+	cargarLayout(document.getElementById("central"), ADMIN, uiAdmin);
+}
 function onClick_perfil(){
 	cargarLayout(document.getElementById("central"), MIPERFIL, uiPerfil);
 }
@@ -199,10 +213,20 @@ function onClick_skate(){
 	cargarLayout(document.getElementById("central"), SKATE, uiSkate);
 }
 /*fin nav*/
+
+function onClick_addT(){
+	setTrick(new Truco(
+		document.getElementById("nombreTruco").value,
+		document.getElementById("linkTruco").value		
+		));
+	document.getElementById("nombreTruco").value="";
+	document.getElementById("linkTruco").value="";
+}
+
 function onClick_addP(){
-	let nHijos=(document.getElementById("trucos").children.length)/3;
+	let nHijos=((document.getElementById("trucos").children.length)/3)-1;
 	let selecion=[];
-	for(let i=0; i<nHijos; i++){
+	for(let i=0; i<=nHijos; i++){
 		if(document.getElementById("truco"+i).checked==true){
 			selecion.push(document.getElementById("truco"+i).value);
 		}
@@ -231,9 +255,9 @@ function onClick_addP(){
 	cargarLayout(document.getElementById("central"), MIPERFIL, uiPerfil);
 }
 function onClick_addH(){
-	let nHijos=(document.getElementById("trucos").children.length)/3;
+	let nHijos=((document.getElementById("trucos").children.length)/3)-1;
 	let selecion=[];
-	for(let i=0; i<nHijos; i++){
+	for(let i=0; i<=nHijos; i++){
 		if(document.getElementById("truco"+i).checked==true){
 			selecion.push(document.getElementById("truco"+i).value);
 		}
@@ -410,6 +434,23 @@ function onClick_truco(){
 		}
 		let randTruco=trucos[Math.floor(Math.random()*trucos.length)];
 		sessionStorage.setItem("SKATE", JSON.stringify(trucos));
+		if (trucos.length==0){
+			let puntos= JSON.parse(sessionStorage.getItem("PUNTOS"));
+		if(puntos[0][1]>puntos[0][0]){
+			mensaje("Has ganado", "Ha ganado "+puntos[0][0]);
+			cargarLayout(document.getElementById("central"), SKATE, uiSkate);
+		}else{
+			if(puntos[1][1]>puntos[0][1]){
+			mensaje("Has ganado", "Ha ganado "+puntos[1][0]);
+			cargarLayout(document.getElementById("central"), SKATE, uiSkate);
+			}else{
+				if(puntos[1][1]==puntos[0][1]){
+			mensaje("Fin", "Empate");
+			cargarLayout(document.getElementById("central"), SKATE, uiSkate);
+			}
+			}
+		}
+	}
 	}
 	else{
 		let trucos= JSON.parse(sessionStorage.getItem("SKATE"));

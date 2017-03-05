@@ -51,8 +51,23 @@ function setUser(us,newUsuario){//recibeel objeto ususario y un booleano si en n
     };
 }
 
-function getTricks(){
+function setTrick(us){
+    if (!db) return false;
     let customerObjectStore=db.transaction("trucos", "readwrite").objectStore("trucos");
+    let req=customerObjectStore.get(us.nombre);
+    req.onsuccess  = function(event){
+        if(event.target.result){
+            mensaje("Error", "Truco ya existente");
+        }else{
+            let md=event.target.result;
+            if(md==null) md=us;
+            md.nombre=us.nombre;
+            md.link=us.link;
+            let up=customerObjectStore.put(md);
+            up.onsuccess=function(){console.log("BBDD_OK"); mensaje("correcto", "Truco guardado con exito");}
+            up.onerror=function(){mensaje("Error","BBDD_ERR");}
+        }
+    }
 }
 
 /* GUardar Usuarios
@@ -89,6 +104,26 @@ function getUsers(cb, patron=""){
 
     };
 }
+
+function getTrick(cb){
+    if (!db) return false;
+    let customerObjectStore=db.transaction("trucos", "readwrite").objectStore("trucos");
+
+    let trucos = [];//fuera obligatorio para que no se reinici cada vez
+
+    customerObjectStore.openCursor().onsuccess = function(event) {
+        let cursor = event.target.result;
+        if (cursor) {
+
+            trucos.push(cursor.value);
+            cursor.continue();
+        }
+        else {
+            cb(trucos);
+        }
+
+    };
+}
 /*Implementación de la BBDD*/
 
 let db;
@@ -110,6 +145,6 @@ request.onupgradeneeded=function(event){
 	let objetstore=db2.createObjectStore("usuarios", {keyPath: "user"});
     let trucos=db2.createObjectStore("trucos", {keyPath:"nombre"});
 
-	let request=objetstore.put({"user":"a","pass":"a","name":"a","email":"a@sbm.com", "hechos":["flip", "ollie"], "pendientes":["heelflip", "impossible"]});
-        request= trucos.put({"nombre":"360flip", "tipo":"flat"});
+	let request=objetstore.put({"user":"a","pass":"a","name":"a","email":"a@sbm.com", "hechos":["flip", "ollie"], "pendientes":["heelflip", "impossible"], "tipo":"admin"});
+    
 };

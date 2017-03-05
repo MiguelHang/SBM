@@ -136,6 +136,16 @@ h1{
 	margin: 2%;
 	font-family: FuturaBd;	
 }
+#trickAdmin{
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	border-radius: 4px;
+	background-color: #ffffff;
+	width: 40%;
+	height: 85%;
+	margin-top: 5%;
+}
 #login{
 	display: flex;
 	justify-content: center;
@@ -147,6 +157,13 @@ h1{
 	margin-top: 5%;
 }
 #login input{
+	width: 50%;
+	height: 7%;
+	margin: 3%;
+	margin-left: 25%;
+
+}
+#trickAdmin input{
 	width: 50%;
 	height: 7%;
 	margin: 3%;

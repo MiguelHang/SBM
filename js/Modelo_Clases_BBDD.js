@@ -1,12 +1,13 @@
 
 class User{
-    constructor(u,c,e,n,h,p){
+    constructor(u,c,e,n,h,p,t="usuario"){
         this.user=u;
         this.pass=c; 
         this.email=e;
         this.name=n;
         this.hechos=h;
         this.pendientes=p;
+        this.tipo=t;
     };
     toString(){
         return '(${this.user}-${this.pass}-${this.email})';
@@ -16,9 +17,9 @@ class User{
     };
 };
 class Truco{
-    constructor(n,t){
+    constructor(n,e){
         this.nombre=n;
-        this.tipo=t;
+        this.link=e;
     };
     toString(){
         return '(${this.nombre}-${this.pass})';
