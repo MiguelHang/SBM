@@ -10,7 +10,7 @@ function BBDDvalidateUser(u, p,cb){
     let req=customerObjectStore.get(document.getElementById("usuario").value);
     req.onsuccess=function(event){
         if(event.target.result!=undefined){
-        if(event.target.result.pass==document.getElementById("pass").value) validado=true;
+        if(event.target.result.pass==Sha256.hash(document.getElementById("pass").value)) validado=true;
         if (validado)
             sessionStorage.setItem("USUARIO",JSON.stringify(event.target.result)); //usuario en JSON en sesion
         else
@@ -38,7 +38,7 @@ function setUser(us,newUsuario){//recibeel objeto ususario y un booleano si en n
             let md=event.target.result;
             if (md==null && newUsuario) md=us;//cuando creamos uno nuevo
             md.name=us.name;
-            md.pass=us.pass;
+            md.pass=Sha256.hash(us.pass);
             md.email=us.email;
             md.hechos=us.hechos;
             md.pendientes=us.pendientes;
@@ -145,6 +145,6 @@ request.onupgradeneeded=function(event){
 	let objetstore=db2.createObjectStore("usuarios", {keyPath: "user"});
     let trucos=db2.createObjectStore("trucos", {keyPath:"nombre"});
 
-	let request=objetstore.put({"user":"a","pass":"a","name":"a","email":"a@sbm.com", "hechos":["flip", "ollie"], "pendientes":["heelflip", "impossible"], "tipo":"admin"});
-    
+	let request=objetstore.put({"user":"a","pass":"ca978112ca1bbdcafac231b39a23dc4da786eff8147c4e72b9807785afee48bb","name":"a","email":"a@sbm.com", "hechos":["flip", "ollie"], "pendientes":["heelflip", "impossible"], "tipo":"admin"});
+
 };
